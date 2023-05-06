@@ -27,32 +27,7 @@ const PinAccess=({navigation})=>{
 
   const[wronPin,setWrongPin]=useState(false);
   const [blueTick,setBlueTick]=useState(false);
-//   const [field5,setField5]=useState('');
-//   const [field6,setField6]=useState('');
 
-
-//   const focusInput1 = (text) => {
-//     inputRef1.current.focus();
-    
-//   };
-
-//   const focusInput2 = (text) => {
-    
-//     inputRef2.current.focus();
-//   };
-//   const focusInput3 = (text) => {
-//     setField3(text);
-//     inputRef3.current.focus();
-//   };
-
-//   const focusInput4 = (text) => {
-    
-//     inputRef4.current.focus();
-//   };
-//   const focusInput5 = (text) => {
-    
-//     inputRef5.current.focus();
-//   };
  
  
   const Validate=async ()=>
@@ -108,18 +83,6 @@ const PinAccess=({navigation})=>{
   }
    
   }
-//   const update=async ()=>
-//   {
-//     try{
-//         await AsyncStorage.removeItem('Pin');
-//         navigation.navigate('PIN');
-//     }
-//     catch(error)
-//     {
-//         console.log(error)
-//     }
-   
-//   }
 
   return(
     <View style={{flex:1,alignItems:'center'}}>
@@ -152,15 +115,7 @@ const PinAccess=({navigation})=>{
        onChangeText={(text)=>
         {
             setField1(text);
-            // if(text!='')
-            // {
-            //     inputRef1.current.focus();
-            //     setField1(text);
-            // }
-            // else
-            // {
-            //     inputRef.current.focus();
-            // }
+          
     }}/>
     </View>
     <View style={{height:45,width:45,borderBottomWidth:1,borderBottomColor:'grey',justifyContent:'center',alignItems:'center',marginRight:10}}>
@@ -183,15 +138,7 @@ const PinAccess=({navigation})=>{
         onChangeText={(text)=>
             {
                 setField2(text);
-                // if(text!='')
-                // {
-                //     inputRef2.current.focus();
-                //     setField2(text);
-                // }
-                // else
-                // {
-                //     inputRef1.current.focus();
-                // }
+              
         }}
       />
     </View>
@@ -215,15 +162,7 @@ const PinAccess=({navigation})=>{
         onChangeText={(text)=>
             {
                 setField3(text);
-                // if(text!='')
-                // {
-                //     inputRef3.current.focus();
-                //     setField3(text);
-                // }
-                // else
-                // {
-                //     inputRef2.current.focus();
-                // }
+              
         }}/>
     </View>
     <View style={{height:45,width:45,borderBottomWidth:1,borderBottomColor:'grey',justifyContent:'center',alignItems:'center',marginRight:10}}>
@@ -259,25 +198,7 @@ const PinAccess=({navigation})=>{
           }}
       />
     </View>
-    {/* <View style={{height:45,width:45,borderBottomWidth:1,borderBottomColor:'grey',justifyContent:'center',alignItems:'center',marginRight:10}}>
-      <TextInput style={{fontSize:20}} keyboardType="numeric" ref={inputRef4}  maxLength={1} secureTextEntry={true}
-        onChangeText={(text)=>
-            {
-                if(text!='')
-                {
-                    inputRef5.current.focus();
-                    setField5(text);
-                }
-                else
-                {
-                    inputRef4.current.focus();
-                }
-        }}
-      />
-    </View>
-    <View style={{height:45,width:45,borderBottomWidth:1,borderBottomColor:'grey',justifyContent:'center',alignItems:'center'}}>
-      <TextInput style={{fontSize:20}} keyboardType="numeric" ref={inputRef5}  maxLength={1} secureTextEntry={true}  onChangeText={(text)=>{setField6(text)}}  />
-    </View> */}
+    
     </View>
 </View>
 

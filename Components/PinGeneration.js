@@ -239,30 +239,7 @@ onChangeText={(text)=>{ setField1(text)}}/>
     }}
       />
     </View>
-    {/* <View style={{height:45,width:45,justifyContent:'center',alignItems:'center',marginRight:10}}>
-      <TextInput  keyboardType="numeric" ref={inputRef4}  maxLength={1} secureTextEntry={true}
-        onChangeText={(text)=>
-        
-      style={[
-        styles.pinInput,
-        { borderRadius: field1 ? 10 : 0, backgroundColor: field1 ? '#fff' : '#ddd' },
-      ]}
-            {
-                if(text!='')
-                {
-                    inputRef5.current.focus();
-                    setField5(text);
-                }
-                else
-                {
-                    inputRef4.current.focus();
-                }
-        }}
-      />
-    </View>
-    <View style={{height:45,width:45,justifyContent:'center',alignItems:'center'}}>
-      <TextInput  keyboardType="numeric" ref={inputRef5}  maxLength={1} secureTextEntry={true}  onChangeText={(text)=>{setField6(text)}}  />
-    </View> */}
+   
   
 </View>          
 
@@ -362,25 +339,7 @@ onKeyPress={({ nativeEvent, target }) => {
     }}
       />
     </View>
-    {/* <View style={{height:45,width:45,borderBottomWidth:1,borderBottomColor:'grey',justifyContent:'center',alignItems:'center',marginRight:10}}>
-      <TextInput style={{fontSize:20}} keyboardType="numeric" ref={inputRefSec4}  maxLength={1} secureTextEntry={true}
-        onChangeText={(text)=>
-            {
-                if(text!='')
-                {
-                    inputRefSec5.current.focus();
-                    setFieldSec5(text);
-                }
-                else
-                {
-                    inputRefSec4.current.focus();
-                }
-        }}
-      />
-    </View>
-    <View style={{height:45,width:45,borderBottomWidth:1,borderBottomColor:'grey',justifyContent:'center',alignItems:'center'}}>
-      <TextInput style={{fontSize:20}} keyboardType="numeric" ref={inputRefSec5}  maxLength={1} secureTextEntry={true}  onChangeText={(text)=>{setFieldSec6(text)}}  />
-    </View> */}
+  
     </View>
     </View>
 

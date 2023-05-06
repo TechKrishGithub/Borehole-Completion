@@ -548,7 +548,7 @@ const pickImage=async ()=>
                              width:80,
                              justifyContent:'center',
                              height:50,
-                             backgroundColor:'#d8e6d8'
+                
                          }}><Text  style={{color:'black',fontSize:12}} >{stepNo}</Text></DataTable.Cell>
                          <DataTable.Cell style={{
                                borderWidth:1,
@@ -556,7 +556,7 @@ const pickImage=async ()=>
                                width:90,
                                justifyContent:'center',
                                height:50,
-                               backgroundColor:'#d8e6d8'
+                  
                          }}><Text style={{color:'black',fontSize:12}}>{timeNew}</Text></DataTable.Cell>
                         <DataTable.Cell style={{
                              borderWidth:1,
@@ -564,7 +564,7 @@ const pickImage=async ()=>
                              width:150,
                              justifyContent:'center',
                              height:50,
-                             backgroundColor:'#d8e6d8'
+                
                         }}>
                         <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:4,opacity:0}}>.......................................    
@@ -621,7 +621,7 @@ const pickImage=async ()=>
                               width:80,
                               justifyContent:'center',
                               height:50,
-                              backgroundColor:'#d8e6d8'
+                  
                         }}>
                              <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:4,opacity:0}}>................................</Text>
@@ -638,7 +638,7 @@ const pickImage=async ()=>
                               width:80,
                               justifyContent:'center',
                               height:50,
-                              backgroundColor:'#d8e6d8'
+                  
                         }}>
                              <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:4,opacity:0}}>................................</Text>
@@ -655,7 +655,7 @@ const pickImage=async ()=>
                               width:70,
                               justifyContent:'center',
                               height:50,
-                              backgroundColor:'#d8e6d8'
+                  
                         }}><TouchableOpacity onPress={() => {
                             if(index==0)
                             {
@@ -832,266 +832,9 @@ const pickImage=async ()=>
                              })
                   }
                 }}/> 
-                {/* <Text></Text>
-                <Button
-        onPress={()=>
-        {
-            db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM StepTestTable where bore_hole_num=?",[getBoreHoleNum],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                            const { id,step_no,time,Water_level,draw_down,discharge,Ec,remarks,bore_hole_num} = results.rows.item(i);
-                            console.log(`id: ${id}, step_no: ${step_no}, time: ${time}, Water_level:${Water_level} ,draw_down :${draw_down},discharge:${discharge},Ec:${Ec} ,remarks :${remarks},bore_hole_num:${bore_hole_num}`);
-                        }
-                    }
-                )
-              })
-        }}
-        title='checkTable'
-        />
-        <Text></Text>
-        <Button
-        onPress={()=>
-        {
-            db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM StepTestForm where bore_hole_num=?",[getBoreHoleNum],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                            const { id,bore_hole_num,step_no,pump_on,pump_off,total_step,dur_pum,static_wat,dyn_wat,measu_point,pump_inst_depth,meas_by} = results.rows.item(i);
-                            console.log(`id: ${id},bore_hole_num:${bore_hole_num}, step_no: ${step_no}, pump_on: ${pump_on}, pump_off:${pump_off} ,total_step :${total_step},dur_pum:${dur_pum},static_wat:${static_wat} ,dyn_wat :${dyn_wat},measu_point :${measu_point},pump_inst_depth :${pump_inst_depth},meas_by :${meas_by}`);
-                        }
-                    }
-                )
-              })
-        }}
-        title='checkForm'
-        /> */}
-        <Text></Text>
-        {/* <Button
-        title='drop'
-        onPress={()=>
-        {
-            db.transaction(tx => {
-                tx.executeSql(
-                  'DROP TABLE IF EXISTS StepTestForm',
-                  [],
-                  (_, result) => {
-                    console.log('StepTestRecovery Table deleted');
-                  },
-                  (_, error) => {
-                    console.log('Error deleting table:', error);
-                  }
-                );
-          
-            })
-        }}
-        />
-        <Text></Text> */}
-        {/* <Button
-        onPress={async ()=>
-        {
-          setLoading(true)
-            const isTableEmpty = () => {
-                return new Promise((resolve, reject) => {
-                  db.transaction((tx) => {
-                    tx.executeSql(
-                      'SELECT COUNT(*) as count FROM StepTestForm where bore_hole_num=?',
-                      [getBoreHoleNum],
-                      (_, result) => {
-                        const count = result.rows.item(0).count;
-                        resolve(count === 0);
-                      },
-                      (_, error) => {
-                        reject(error);
-                      }
-                    );
-                  });
-                });
-              };
-              const isTableEmpty2 = () => {
-                return new Promise((resolve, reject) => {
-                  db.transaction((tx) => {
-                    tx.executeSql(
-                      'SELECT COUNT(*) as count FROM StepTestTable where bore_hole_num=?',
-                      [getBoreHoleNum],
-                      (_, result) => {
-                        const count = result.rows.item(0).count;
-                        resolve(count === 0);
-                      },
-                      (_, error) => {
-                        reject(error);
-                      }
-                    );
-                  });
-                });
-              };
              
-              isTableEmpty().then((empty)=>
-              {
-                if(!empty)
-                {                    
-                    isTableEmpty2().then(async(empty)=>{
-                        if(!empty)
-                        {                
-                         
-                            db.transaction(tx=>
-                                {                                
-                                 tx.executeSql('SELECT * FROM StepTestForm where bore_hole_num=?',
-                                  [getBoreHoleNum],
-                                  (tx,results)=>
-                                  {            
-                                    console.log(results.rows.length)
-                                    for (let i = 0; i <results.rows.length;i++)
-                                     {                                        
-                                        const stepTestTableArrayData=[];
-                                        const { id,bore_hole_num,step_no,pump_on,pump_off,total_step,dur_pum,static_wat,dyn_wat,measu_point,pump_inst_depth,meas_by} = results.rows.item(i);        
-
-                                              tx.executeSql('SELECT * FROM StepTestTable where step_no=? AND bore_hole_num=?',
-                                              [step_no,getBoreHoleNum],
-                                              
-                                              (tx,results)=>
-                                              {
-                                                
-                                                for (let i = 0; i < results.rows.length; i++) {
-                                                  const row = results.rows.item(i);                                                  
-                                                  stepTestTableArrayData.push({
-                                                      StepNo:row.step_no,
-                                                      Time:row.time,
-                                                      Water_Level:row.Water_level,
-                                                      Draw_Down:row.draw_down,
-                                                      Discharge:row.discharge,
-                                                      EC:row.Ec,
-                                                      Remarks:row.remarks
-                                                  });
-                                                }        
-                                                     console.log(stepTestTableArrayData) 
-                                              }
-                                              )                
-                                            
-                                              fetch('http://182.18.181.115:8091/api/BoreholeNumber/Get/', {
-                                                method: 'POST',
-                                                headers: {
-                                                Accept: 'application/json',
-                                                'Content-Type': 'application/json',
-                                              },
-                                             body: JSON.stringify({
-                                               userId: userid,
-                                               BoreholeNumber: getBoreHoleNum,
-                                             }),
-                                           })
-                                             .then((response) => response.json()).
-                                             then(resData=>JSON.parse(resData))
-                                             .then((responseData) => {
-                                               
-                                               if(responseData.length!==0)
-                                               {  
-                                                const bID=responseData[0].boreholeId;
-                                                console.log(bID);
-                                                fetch('http://182.18.181.115:8091//api/StepTest/Insert',
-                                                {
-                                                method: 'POST',
-                                                headers: {
-                                                Accept: 'application/json',
-                                                'Content-Type': 'application/json',
-                                              },
-                                             body: JSON.stringify({
-                                                DrawdownPumpOn: pump_on,
-                                                DrawdownPumpOff: pump_off,
-                                                StepTestNo: step_no,
-                                                DrawdownDuration: dur_pum,
-                                                DrawdownSWL: static_wat,
-                                                DrawdownDWL: dyn_wat,
-                                                DrawdownMeasuringPoint: measu_point,
-                                                DrawdownPumpInstallationDepth: pump_inst_depth,
-                                                DrawdownMeasuredBy: meas_by,
-                                                DrawdownTable: stepTestTableArrayData,
-                                                DrawdownSiteFile:'dfkdfkdjfd',
-                                                userid: userid,
-                                                userName:userName,
-                                                boreholeId:bID
-                                             }),
-                                           }).then(response=>response.json()).
-                                           then(responseData=>JSON.parse(responseData)).
-                                           then(result=>
-                                            {
-                                                resultSaved.push(result)
-                                                console.log(resultSaved)
-                                                if(result==='Saved')
-                                                {
-                                                  setLoading(false);
-                                                  setBlueTick(true);
-                                                  setTimeout(()=>
-                                                  {
-                                                    setBlueTick(false)
-                                                  },1000)
-                                                  
-                                                                           
-                                                }
-                                                else
-                                                {
-                                                  setLoading(false)                                  
-                                                    Alert.alert('WARNING','Data Already Exist on '+step_no+' this number ')                                        
-                                                }                                        
-                                            }
-                                            )
-                                           .catch(error=>console.log(error))         
-                                               }
-                                            })
-                                                
-                                 
-                                    }
-                                  }
-                                  
-                                  )
-                                })
-                        }
-                        else
-                        {
-                          setLoading(false)
-                          setExcelMark(true)
-                          setTimeout(()=>
-                          {
-                            setExcelMark(false);
-                          },2000)
-                        }
-                    })
-                }
-                else
-                {
-                    setLoading(false)
-                    Alert.alert('WARNING','Sorry StepTestForm having no data')
-                }
-            })
-            
-        }}
-        
-        title='SYNC'
-        />
-          */}
-        {/* <Text></Text>
-        <Button
-        onPress={()=>
-        {
-            console.log(resultSaved)
-        }}
-        title='reChec'
-        /> */}
-            {/* <Pressable 
-            onPress={done}
-            style={({pressed})=>({backgroundColor:pressed?'#fff':'#1a06fd'})}
-            >
-            <View style={{height:35,width:80,marginRight:10,justifyContent:'center',alignItems:'center'}}>
-          <Text style={styles.Save}>Save</Text>
-          </View>
-        </Pressable> */}
+        <Text></Text>
+      
         </View>
        
             </ScrollView>
@@ -1191,8 +934,7 @@ const styles=StyleSheet.create({
         borderColor:'grey',
         width:140,
         justifyContent:'center',
-        height:50,
-        backgroundColor:'#d8e6d8'
+        height:50
     },
     HeadText:{
         color:'#4b3a4b',

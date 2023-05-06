@@ -89,6 +89,7 @@ const DashBoard=({navigation})=>
 
     const refreshScreen=()=>
     {
+      
       db.transaction((tx) => {
         tx.executeSql(
           'SELECT * FROM BoreHoleNumbersFromApi',
@@ -525,20 +526,19 @@ isTableEmptyForSen6()
   }
 })
 
-
-
+setLoadingForTrFa(true)
 db.transaction((tx) => {
 tx.executeSql(
   'SELECT * FROM BoreHoleNumbers',
   [],
     (_, { rows: { _array } }) => {
-       setBoreHoleNumGet(_array)
+       setBoreHoleNumGet(_array);
+       setLoadingForTrFa(false)
        setLoading(false);
-       
-       
     },
   (tx, error) => {
     console.log('Error fetching data from database:', error);
+    setLoadingForTrFa(false);
     setLoading(false);
   },
 );
@@ -1514,17 +1514,17 @@ const sendDataForStepTest=(boreHoleNumFromValues,bID)=>
            const dateTime1 = new Date(year1, month1, day1, hour1, minute1, second1);
            const isoDateTime1 = dateTime1.toISOString();
   
-           const dateTimeString = pump_off; 
+            const dateTimeString = pump_off; 
             const dateParts = dateTimeString.split('/');
-             const timeParts = dateParts[2].split(', ')[1].split(':');
+            const timeParts = dateParts[2].split(', ')[1].split(':');
             const year = parseInt(dateParts[2].split(', ')[0]);
-           const day = parseInt(dateParts[0])+1; // subtract 1 to convert to 0-based index
-           const month = parseInt(dateParts[1])-1;
+            const day = parseInt(dateParts[0])+1; // subtract 1 to convert to 0-based index
+            const month = parseInt(dateParts[1])-1;
             const hour = parseInt(timeParts[0]);
             const minute = parseInt(timeParts[1]);
-           const second = parseInt(timeParts[2]);
-           const dateTime = new Date(year, month, day, hour, minute, second);
-           const isoDateTime = dateTime.toISOString();
+            const second = parseInt(timeParts[2]);
+            const dateTime = new Date(year, month, day, hour, minute, second);
+            const isoDateTime = dateTime.toISOString();
            console.log("StepTestTable",pump_on,isoDateTime1);
            console.log("stepTestTable",pump_off,isoDateTime);
                   tx.executeSql('SELECT * FROM StepTestTable where step_no=? AND bore_hole_num=?',
@@ -2155,7 +2155,7 @@ const refreshBoreholeNumbersApi=()=>
       'DROP TABLE IF EXISTS  BoreHoleNumbersFromApi',
       [],
       (_, result) => {
-        console.log('Table deleted ConstantDesTestTable');
+        console.log('Table deleted BoreHoleNumbersFromApi');
       },
       (_, error) => {
         console.log('Error deleting table:', error);
@@ -2260,54 +2260,15 @@ then(result=>
             }}>Borehole Numbers</Text>
           </TouchableOpacity>
           </View>
-
-          </View>
-{/* 
-           <Button title='CheckUser' onPress={()=> 
-            {
-              db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM LogForDeepWellSendingStauts",[],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                          console.log(results.rows.item(i))
-                            // const { id, bore_hole_num,Status } = results.rows.item(i);
-                            // console.log(`User ID: ${id}, bore_hole_num: ${bore_hole_num}, Status: ${Status}, `);
-                        }
-                    }
-                )
-              })
-            }}/> */}
-
-{/* <Button title='delete'
-onPress={()=>
-{
-  
-  db.transaction(tx => {
-    tx.executeSql(
-      'DROP TABLE IF EXISTS  LogForDeepWellSendingStauts',
-      [],
-      (_, result) => {
-        console.log('Table deleted LogForDeepWellSendingStauts');
-      },
-      (_, error) => {
-        console.log('Error deleting table:', error);
-      }
-    );
-
-})
-}}
-/> */}
-<Button
+        </View>
+    
+    {/* <Button
 onPress={()=>
 {
   navigation.navigate("Choose Screen");
 }}
 title='screens'
-/>
+/> */}
 <Text style={{fontSize:5}}></Text>
             <ScrollView
             >
@@ -2457,7 +2418,6 @@ title='screens'
                style={{width:'100%'}}
                >
                  <Icon name="times-circle" size={22} color="#f00" />
-             {/* <Image source={require('../assets/pending.png')} style={{height:30,width:30}}/> */}
              </View>
                </DataTable.Cell>
                </View> : <Text></Text>):<Text></Text> ) :<Text></Text>): <Text></Text> ): <Text></Text> ) :<Text></Text>
@@ -2508,8 +2468,6 @@ title='screens'
              >
                <View style={{width:'100%'}}>
                <Icon name="check-circle" size={22} color="#17d238" />
-             {/* <Image source={require('../assets/TickMark3.png')} style={{height:40,width:40}}/> */}
-               {/* <Image source={require("../assets/Tickmark2.png")} style={{height:20,width:20}}/> */}
                </View>
                </DataTable.Cell>
                </View>
@@ -2528,7 +2486,6 @@ title='screens'
                style={{width:'100%'}}
                >
                 <Icon name="times-circle" size={22} color="#f00" />
-             {/* <Image source={require('../assets/pending.png')} style={{height:30,width:30}}/> */}
              </View>
                </DataTable.Cell>
                </View> : <Text></Text>):<Text></Text> ) :<Text></Text>): <Text></Text> ): <Text></Text> ) :<Text></Text>
@@ -2579,8 +2536,6 @@ title='screens'
              >
                <View style={{width:'100%'}}>
                <Icon name="check-circle" size={22} color="#17d238" />
-             {/* <Image source={require('../assets/TickMark3.png')} style={{height:40,width:40}}/> */}
-               {/* <Image source={require("../assets/Tickmark2.png")} style={{height:20,width:20}}/> */}
                </View>
                </DataTable.Cell>
                </View>
@@ -2599,7 +2554,6 @@ title='screens'
                style={{width:'100%'}}
                >
                 <Icon name="times-circle" size={22} color="#f00" />
-             {/* <Image source={require('../assets/pending.png')} style={{height:30,width:30}}/> */}
              </View>
                </DataTable.Cell>
                </View> : <Text></Text>):<Text></Text> ) :<Text></Text>): <Text></Text> ): <Text></Text> ) :<Text></Text>
@@ -2648,8 +2602,6 @@ title='screens'
              >
                <View style={{width:'100%'}}>
                <Icon name="check-circle" size={22} color="#17d238" />
-             {/* <Image source={require('../assets/TickMark3.png')} style={{height:40,width:40}}/> */}
-               {/* <Image source={require("../assets/Tickmark2.png")} style={{height:20,width:20}}/> */}
                </View>
                </DataTable.Cell>
                </View>
@@ -2669,7 +2621,6 @@ title='screens'
                style={{width:'100%'}}
                >
                   <Icon name="times-circle" size={22} color="#f00" />
-             {/* <Image source={require('../assets/pending.png')} style={{height:30,width:30}}/> */}
              </View>
                </DataTable.Cell>
                </View> : <Text></Text>):<Text></Text> ) :<Text></Text>): <Text></Text> ): <Text></Text> ) :<Text></Text>
@@ -2718,8 +2669,6 @@ title='screens'
              >
                <View style={{width:'100%'}}>
                <Icon name="check-circle" size={22} color="#17d238" />
-             {/* <Image source={require('../assets/TickMark3.png')} style={{height:40,width:40}}/> */}
-               {/* <Image source={require("../assets/Tickmark2.png")} style={{height:20,width:20}}/> */}
                </View>
                </DataTable.Cell>
                </View>
@@ -2739,7 +2688,6 @@ title='screens'
                style={{width:'100%'}}
                >
                   <Icon name="times-circle" size={22} color="#f00" />
-             {/* <Image source={require('../assets/pending.png')} style={{height:30,width:30}}/> */}
              </View>
                </DataTable.Cell>
                </View> : <Text></Text>):<Text></Text> ) :<Text></Text>): <Text></Text> ): <Text></Text> ) :<Text></Text>
@@ -2794,8 +2742,6 @@ title='screens'
              >
                <View style={{width:'100%'}}>
                <Icon name="check-circle" size={22} color="#17d238" />
-             {/* <Image source={require('../assets/TickMark3.png')} style={{height:40,width:40}}/> */}
-               {/* <Image source={require("../assets/Tickmark2.png")} style={{height:20,width:20}}/> */}
                </View>
                </DataTable.Cell>
                </View>
@@ -2814,8 +2760,7 @@ title='screens'
                <View
                style={{width:'100%'}}
                >
-                  <Icon name="times-circle" size={22} color="#f00" />
-             {/* <Image source={require('../assets/pending.png')} style={{height:30,width:30}}/> */}
+                  <Icon name="times-circle" size={22} color="#f00" />            
              </View>
                </DataTable.Cell>
                </View> : <Text></Text>):<Text></Text> ) :<Text></Text>): <Text></Text> ): <Text></Text> ) :<Text></Text>
@@ -2829,8 +2774,7 @@ title='screens'
                boreHoleNumForLog.includes(values.bore_hole_numer) ? ( boreHoleNumForStep.includes(values.bore_hole_numer) ? (boreHoleNumForStepRec.includes(values.bore_hole_numer) ? ( boreHoleNumForVes .includes(values.bore_hole_numer) ? ( boreHoleNumForConstDesTes.includes(values.bore_hole_numer) ? ( boreHoleNumForConstTesRec.includes(values.bore_hole_numer) ? <View style={{justifyContent:'center',alignItems:'center'}}><Button title='Send Data'
                onPress={()=>
               {
-                const getBoreHoleNum=values.bore_hole_numer;
-                // sendData(getBoreHoleNum);
+                const getBoreHoleNum=values.bore_hole_numer;                
                 sendData(getBoreHoleNum)
               }}
                
@@ -2889,80 +2833,111 @@ animationType='fade' >
                     <Text></Text>
 
                     <View style={{flexDirection:'row'}}>
-
-                    <Button
-                    title='cancel'
-                    onPress={()=>
-                    {
-                        setModalVis(false)
-                        setNewBoreHoleNum('');
-                    }}
-                    />
+                 
+                     <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={()=>
+                              {
+                                  setModalVis(false)
+                                  setNewBoreHoleNum('');
+                              }}
+                             style={{
+                              backgroundColor: '#FF6B6B',
+                              borderRadius: 8,
+                              paddingVertical: 13,
+                              paddingHorizontal: 25,
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                             }}
+                            >
+                          <Text style={{
+                             color: '#fff',
+                             fontSize: 12,
+                             fontWeight: 'bold',
+                             textTransform: 'uppercase',
+                          }}>cancel</Text>
+                 </TouchableOpacity>
                   
                     <Text style={{opacity:0}}>..................</Text>
 
-                    <Button
-                    onPress={()=>
-                    {
 
-                        if(newBoreHoleNum==='')
-                        {
-                          setEnterBoreholeNum(true);
-                          setTimeout(()=>
-                          {
-                            setEnterBoreholeNum(false);
-                          },1000)
-                        }
-                        else
-                        {
-                          db.transaction(tx=>
-                            {
-                              tx.executeSql('SELECT bore_hole_numer from BoreHoleNumbers ',[],
-                              (_, { rows }) => {
-                                // Get all values from the column and check if drillPip is exists
-                                const bore_hole_num_Values = rows._array.map((row) => row.bore_hole_numer);
-                                if (bore_hole_num_Values.includes(newBoreHoleNum)) {
-                                  setBoreHoleNumAlrExist(true);
-                                  setTimeout(()=>
+                    <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={()=>
+                              {
+          
+                                  if(newBoreHoleNum==='')
                                   {
-                                    setBoreHoleNumAlrExist(false);
-                                  },1000)
-                                     setNewBoreHoleNum('');
+                                    setEnterBoreholeNum(true);
+                                    setTimeout(()=>
+                                    {
+                                      setEnterBoreholeNum(false);
+                                    },1000)
                                   }
                                   else
                                   {
-                                    tx.executeSql("INSERT INTO BoreHoleNumbers"
-                                    +"(bore_hole_numer) VALUES(?)",
-                                                [newBoreHoleNum],
-                                                (tx,result)=>
-                                                {
-                                                   setBoreHoleNumAdded(true);
-                                                   setTimeout(()=>
-                                                   {
-                                                      setBoreHoleNumAdded(false)
-                                                   },1000)
-                                                    navigation.navigate('Choose Screen')
-                                                    setNewBoreHoleNum('')
-                                                    setModalVis(false);
-                                                },
-                                                (tx,error)=>
-                                                {
-                                                    Alert.alert('FAIL','something went wrong');
-                                                    console.log(error);
-                                                }
-                                          )
+                                    db.transaction(tx=>
+                                      {
+                                        tx.executeSql('SELECT bore_hole_numer from BoreHoleNumbers ',[],
+                                        (_, { rows }) => {
+                                          // Get all values from the column and check if drillPip is exists
+                                          const bore_hole_num_Values = rows._array.map((row) => row.bore_hole_numer);
+                                          if (bore_hole_num_Values.includes(newBoreHoleNum)) {
+                                            setBoreHoleNumAlrExist(true);
+                                            setTimeout(()=>
+                                            {
+                                              setBoreHoleNumAlrExist(false);
+                                            },1000)
+                                               setNewBoreHoleNum('');
+                                            }
+                                            else
+                                            {
+                                              tx.executeSql("INSERT INTO BoreHoleNumbers"
+                                              +"(bore_hole_numer) VALUES(?)",
+                                                          [newBoreHoleNum],
+                                                          (tx,result)=>
+                                                          {
+                                                             setBoreHoleNumAdded(true);
+                                                             setTimeout(()=>
+                                                             {
+                                                                setBoreHoleNumAdded(false)
+                                                             },1000)
+                                                              navigation.navigate('Choose Screen')
+                                                              setNewBoreHoleNum('')
+                                                              setModalVis(false);
+                                                          },
+                                                          (tx,error)=>
+                                                          {
+                                                              Alert.alert('FAIL','something went wrong');
+                                                              console.log(error);
+                                                          }
+                                                    )
+                                            }
+                                          }
+                                        )                            
+                  
+                                      })
                                   }
-                                }
-                              )                            
-        
-                            })
-                      
-                        }
-                           
-                    }}
-                    title='Sumbit'
-                    
-                    />
+                                     
+                              }}
+                             style={{
+                              backgroundColor: '#6C63FF',
+                              borderRadius: 8,
+                              paddingVertical: 13,
+                              paddingHorizontal: 25,
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                             }}
+                            >
+                          <Text style={{
+                             color: '#fff',
+                             fontSize: 12,
+                             fontWeight: 'bold',
+                             textTransform: 'uppercase',
+                          }}>submit</Text>
+                 </TouchableOpacity>
+
+  
                    
                     </View>
 
@@ -2976,9 +2951,9 @@ animationType='fade' >
 
             <Modal visible={boreHoleNumAlrExist} transparent animationType='fade' >  
         <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'rgba(0,0,0,0.5)'}}>        
-           <Image source={require('../assets/ExcelMark.png')} style={{height:70,width:70}}/>
+           <Icon name='exclamation-triangle' size={25} color='yellow'/>
             <Text
-            style={{fontSize:18,color:'yellow',fontWeight:'bold'}}
+            style={{fontSize:18,color:'yellow'}}
             >Borehole Number Already Exist</Text>
             </View>
                   </Modal>
@@ -2998,7 +2973,7 @@ animationType='fade' >
         <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'rgba(0,0,0,0.4)'}}>        
            <Image source={require('../assets/dataAlreadyExistLocal.png')} style={{height:40,width:40}}/>
             <Text
-            style={{fontSize:18,color:'#bef6e3',fontWeight:'bold'}}
+            style={{fontSize:25,color:'#bef6e3'}}
             >Please Enter Borehole Number</Text>
             </View>
                   </Modal>
@@ -3240,6 +3215,8 @@ const styles=StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 5,
     elevation: 2,
+    borderRadius:20,
+    alignItems:'center'
   },
   itemText: {
     fontSize: 13,

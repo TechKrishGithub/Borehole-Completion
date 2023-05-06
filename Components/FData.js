@@ -103,59 +103,6 @@ const [image,SetImage]=useState('');
 
 
 
-  // const pickImage1= async () => {
-  //   try {
-  //     const result = await ImagePicker.launchImageLibraryAsync({
-  //       mediaTypes: ImagePicker.MediaTypeOptions.All,
-  //       allowsEditing: true,
-  //       aspect: [4, 3],
-  //       quality: 1,
-  //     });
-  
-  //     if (!result.canceled) {
-  //       setState(result.uri);
-  //       insertImage(result.uri);
-  //     }
-  //   } catch (error) {
-  //     console.log('Error picking image:', error);
-  //   }
-  // };
-  // const insertImage = async (uri) => {
-  //   try {
-  //     const granted = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
-     
-  //     if (granted.status !== 'granted') {
-  //       alert('Permission to access media library denied');
-  //       return;
-  //     }
-  
-  //     const asset = await MediaLibrary.createAssetAsync(uri);
-  //     const album = await MediaLibrary.getAlbumAsync('SQLiteImages') || await MediaLibrary.createAlbumAsync('SQLiteImages', asset);
-  
-  //     await MediaLibrary.addAssetsToAlbumAsync([asset], album.id, false);
-  
-  //     db.transaction((tx) => {
-  //       tx.executeSql(
-  //         'INSERT INTO images (image) VALUES (?)',
-  //         [asset.uri],
-  //         (_, { rowsAffected }) => {
-  //           if (rowsAffected > 0) {
-  //             console.log('Image inserted successfully');
-  //           } else {
-  //             console.log('Image not inserted');
-  //           }
-  //         },
-  //         (_, error) => {
-  //           console.log('Error inserting image into database:', error);
-  //         }
-  //       );
-  //     });
-  //   } catch (error) {
-  //     console.log('Error inserting image into database:', error);
-  //   }
-  // };
-
-
   const DataSet=()=>{
     if(dateTime==null||time==0||rate==0||formation==''||activites==''||isNaN(depth))
     {
@@ -222,28 +169,10 @@ const [image,SetImage]=useState('');
     const [remarks,setRemarks]=useState('');
     const [state,setState]=useState('');
 
-
-    // const handleConfirmTime = (selectedTime) => {
-    //   setVisibleTime(false);
-    //   setSelectedTime(selectedTime.toLocaleTimeString());
-    // };
-
     
 
     const [dateTime, setDateTime] = useState(null);
 
-    // const [show, setShow] = useState(false);
-
-    // const handleConfirm = (selectedDate) => {
-    //   if (selectedDate) {
-    //     setDateTime(selectedDate);
-    //     setNewDate(dateTime.toLocaleString());
-    //     setShow(false);
-    //   }
-    // };
-    // const handleCancel = () => {
-    //     setShow(false);
-    //   };
     const handleTimeChange = (value, index) => {
       const newData = [...dataRate];
       newData[index] = value;
@@ -273,54 +202,7 @@ const [image,SetImage]=useState('');
       setSelectedRowId(rowId);
       setIsDateTimePickerVisible(true);
     }
-  
 
-
-      // const done=()=>
-      // {
-       
-      //   if(dateTime==null||depthAfter==''||time==''||rate==''||formation==''||activites=='')
-      //   {
-      //    Alert.alert('WARNING','Sorry please fill required fields');
-      //   }
-      //   else
-      //   {
-      //     console.log(dateTime.toLocaleString(),drillpipe+1,depthAfter,time,rate,formation,activites,remarks);
-      //    db.transaction(tx=>{
-      //        tx.executeSql("INSERT INTO DeepWellLogInfosTable"
-      //        +"(date_time,drill_pipe,time,rate,formation_log ,activities,remarks,depth) VALUES(?,?,?,?,?,?,?,?)",
-      //                    [dateTime,drillpipe+1,time,rate,formation,activites,remarks,depthAfter],
-      //                    (tx,result)=>
-      //                    {
-      //                        Alert.alert('SUCCESS','Data Added successfully');
-      //                    },
-      //                    (tx,error)=>
-      //                    {
-      //                        Alert.alert('FAIL','something went wrong');
-      //                        console.log(error);
-      //                    }
-      //        )
-      //    })
-      //   }
-
-      // }
-  
-
-
-    // const handleInputChange = (text, inputKey) => {
-       
-    //     setInputData(prevData => {
-    //       const newData = [...prevData];
-    //       const inputIndex = newData.findIndex(data => data.key === inputKey);
-    //       if (inputIndex >= 0) {
-    //         newData[inputIndex].value = text;
-    //       } else {
-    //         newData.push({ key: inputKey, value: text });
-    //       }
-    //       return newData;
-    //     });
-    //   };
-   
 
     return(
         <ScrollView>
@@ -427,7 +309,6 @@ const [image,SetImage]=useState('');
                       borderColor:'grey',                      
                       width:130,
                       height:55,
-                      backgroundColor:'#d8e6d8',
                       justifyContent:'center'
                    }}>
                     
@@ -452,37 +333,19 @@ const [image,SetImage]=useState('');
               />
             </DataTable.Cell>
 
-
-                    {/* <DataTable.Cell style={styles.field}>
-                        <TouchableOpacity
-                       onPress={() => setShow(true)} 
-                        >
-                            <View style={{width:110}}>                             
-                       <Text style={{fontSize:10}}>{dateTime.toLocaleString()}</Text>
-                        </View>
-                        </TouchableOpacity>
-                       {show&&<DateTimePickerModal
-                          isVisible={show}
-                          mode="datetime"
-                          date={dateTime}
-                          onConfirm={handleConfirm}
-                          onCancel={handleCancel}
-                          />}
-                    </DataTable.Cell> */}
                     <DataTable.Cell style={{
                        borderWidth:1,
                        borderColor:'grey',
                        width:70,
                        justifyContent:'center',
                        height:55,
-                       backgroundColor:'#d8e6d8'
+          
                     }}><Text style={{color:'black',fontWeight:'bold'}}>{index+1}</Text></DataTable.Cell>
                     <DataTable.Cell style={{
                        borderWidth:1,
                        borderColor:'grey',                      
                        width:80,
                        height:55,
-                       backgroundColor:'#d8e6d8',
                        justifyContent:'center'
                     }}
                     >
@@ -521,17 +384,7 @@ const [image,SetImage]=useState('');
                           setDepthAfter(sum);
                         }
                         }}/>
-                        
-
-                    {/* <TouchableOpacity onPress={() => setVisibleTime(true)}>
-                    <Text>time {selectedTime}</Text>
-                                </TouchableOpacity>
-                                <DateTimePickerModal
-                                isVisible={visibleTime}
-                                mode="time"
-                                onConfirm={handleConfirmTime}
-                                onCancel={() => setVisibleTime(false)}
-                                /> */}
+                      
                      </View>
                     <Text style={{fontSize:5,opacity:0}}>...............</Text>
                     </View>
@@ -544,7 +397,7 @@ const [image,SetImage]=useState('');
                         borderColor:'grey',                      
                         width:100,
                         height:55,
-                        backgroundColor:'#d8e6d8',
+
                         justifyContent:'center'
                     }}
                     ><View >
@@ -619,7 +472,7 @@ const [image,SetImage]=useState('');
                          borderColor:'grey',                      
                          width:70,
                          height:55,
-                         backgroundColor:'#d8e6d8',
+
                          justifyContent:'center'
                     }}>
                       <TouchableOpacity
@@ -731,8 +584,30 @@ const [image,SetImage]=useState('');
                 </View>
     </View>
 
+    <Text></Text>
+      {/* <View style={{justifyContent:'center',alignItems:'center'}}>
+        <TouchableOpacity
+      activeOpacity={0.8}
+     
+      style={{
+        backgroundColor: '#6C63FF',
+        borderRadius: 8,
+        paddingVertical: 13,
+        paddingHorizontal: 20,
+        alignItems: 'center',
+        justifyContent: 'center'
+       }}
+      >
+        <Text style={{
+                             color: '#fff',
+                             fontSize: 15,
+                             fontWeight: 'bold',
+                             textTransform: 'uppercase',
+                          }}>save</Text>
 
-        <Text></Text>
+    </TouchableOpacity>
+    </View>
+        <Text></Text> */}
 <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
         <Button title='SAVE' onPress={()=>{
          
@@ -867,489 +742,6 @@ const [image,SetImage]=useState('');
         }}/>
 </View>
 
-        {/* <Text></Text>
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-          <Text></Text> */}
-          {/* <Button title='checkSa' onPress={()=>{
-db.transaction(tx=>{
-  tx.executeSql('SELECT drill_pipe from DeepWellLogInfosTable',[],
-  (tx,results)=>
-        {
-            const len=results.rows.length;
-            for(let i=0;i<len;i++)
-            {
-                const {drill_pipe} = results.rows.item(i);
-                console.log(`drill_pipe: ${drill_pipe}`);
-            }
-        }
-  )
-})
-          }}/> */}
-          {/* <Text></Text> */}
-            {/* <Button title='CheckUserLogin' onPress={()=> 
-            {
-              db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM User_Master",[],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                            const { id, username, password,userid,token } = results.rows.item(i);
-                            console.log(`User ID: ${id}, UserName: ${username}, Password: ${password}, UserId:${userid} ,token :${token}`);
-                        }
-                    }
-                )
-              })
-            }}/> */}
-
-             {/* <Button title='CheckLogForm' onPress={()=> 
-            {
-              db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM DeepWellLogInfos where bore_hole_num=?",[boreHoleNum],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                            const {id,bore_hole_num,start_date,end_date,driller_unit,table_height,dril_rod_len,dril_bit_len } = results.rows.item(i);
-                            console.log(`id: ${id}, bore_hole_num: ${bore_hole_num}, start_date: ${start_date}, end_date:${end_date} ,driller_unit :${driller_unit},table_height :${table_height},dril_rod_len :${dril_rod_len},dril_bit_len :${dril_bit_len}`);
-                        }
-                    }
-                )
-              })
-            }}/> */}
-            {/* <Text></Text> */}
-          
-        {/* <Pressable 
-        onPress={done}
-        style={({pressed})=>({backgroundColor:pressed?'#fff':'#2d84f0'})}
-        >
-        <View style={{height:35,width:80,marginRight:10,justifyContent:'center',alignItems:'center'}}>
-      <Text style={styles.Save}>Save</Text>
-      </View>
-    </Pressable> */}
-    {/* </View> */}
-{/* <Text></Text>
-    <View style={{justifyContent:'center',alignItems:'center'}}>
-
-    <Button title='SAVE' onPress={done}/>
-    <Text></Text> */}
-    {/* <Text></Text>
-    <Button title='CheckLogDeepTableDetails' onPress={()=>
-            {
-              db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM DeepWellLogInfosTable where bore_hole_num=?",[boreHoleNum],
-                    (tx,results)=>
-                    {
-                        for(let i=0;i<results.rows.length;i++)
-                        {
-                        const  {id,date_time,drill_pipe,time,rate,formation_log ,activities,remarks,depth,bore_hole_num}=results.rows.item(i);
-                            console.log(`ID: ${id}, date_time: ${date_time}, drill_pipe: ${drill_pipe},depth:${depth},time:${time},rate:${rate},formation_log:${formation_log},activites:${activities},remarks:${remarks},bore_hole_num:${bore_hole_num}`)
-                        }
-                    }
-                )
-              })
-            }}/> */}
-            <Text></Text>
-      {/* <Button
-            title='DATAPUSH'
-            onPress={async ()=>
-            {             
-              try {
-                db.transaction(tx=>
-                  {
-                    
-                    tx.executeSql('SELECT * FROM DeepWellLogInfosTable',
-                    [],
-                    (tx,results)=>
-                    {
-                      for (let i = 0; i < results.rows.length; i++) {
-                        const row = results.rows.item(i);
-                        TotalData.push({
-                          DateAndTime:row.date_time,
-                          DrillPipeNo:row.drill_pipe,
-                          Minutes:row.time,
-                          Rate:row.rate,
-                          Log:row.formation_log,
-                          Activity:row.activities,
-                          Comments:row.remarks,
-                          Depth:row.depth
-                        });
-                      }        
-                            
-                    }
-                    )
-                  })
-                }
-                catch (error) {
-                      console.error(error.message);
-                    }
-                    try {
-                      db.transaction(tx=>
-                        {
-                          tx.executeSql('SELECT * FROM DeepWellLogInfos',
-                          [],
-                          (tx,results)=>
-                          {  
-                        
-                            for (let i = 0; i < results.rows.length; i++) {
-                              const row = results.rows.item(i);
-                              TotalData.push({                    
-                                BoreholeNumber:row.bore_hole_num,
-                                DateStart:row.start_date,
-                                DateEnd:row.end_date,
-                                Driller_units:row.driller_unit,
-                                TableHeight:row.table_height,
-                                DrillingRodLength:row.dril_rod_len,
-                                DrillBitLength:row.dril_bit_len                                
-                              });
-                            }                      
-                          }
-                          )
-                        })
-                      }
-                      catch (error) {
-                            console.error(error.message);
-                          }
-
-                          try {
-                            db.transaction(tx=>
-                              {
-                                tx.executeSql('SELECT * FROM User_Master',
-                                [],
-                                (tx,results)=>
-                                {  
-                              
-                                  for (let i = 0; i < results.rows.length; i++) {
-                                    const row = results.rows.item(i);
-                                    TotalData.push({                    
-                                      userid:row.userid,
-                                      userName:row.username                            
-                                    });
-                                  }                 
-                                  // console.log(TotalData)     
-                                
-                                }
-                                )
-                              })                         
-                            }
-                            catch (error) {
-                                  console.error(error.message);
-                                }
-                
-
-
-                // Execute a SELECT query to retrieve the data
-            //     const query = 'SELECT * FROM DeepWellLogInfosTable';
-            //     const [results] = await db.executeSql(query);
-            
-            //     // Format the data as an array of objects
-            //     const data = [];
-            //     for (let i = 0; i < results.rows.length; i++) {
-            //       const row = results.rows.item(i);
-            //       data.push({
-            //         id: row.id,
-            //         date_time:row.date_time,
-            //         drill_pipe:row.drill_pipe,
-            //         time:row.time,
-            //         rate:row.rate,
-            //         formation_log:row.formation_log,
-            //         activities:row.activities,
-            //         remarks:row.remarks,
-            //         depth:row.depth
-            //       });
-            //     }
-            
-            //     // Do something with the data
-            //     console.log(data);
-            //   } catch (error) {
-            //     console.error(error.message);
-            //   }
-            }}
-            />
-            <Text></Text> */}
-            <View style={{alignItems:'center'}}>
-{/* <Button onPress={ ()=>{
-  setLoading(true)
-const isTableEmpty = () => {
-  return new Promise((resolve, reject) => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        'SELECT COUNT(*) as count FROM DeepWellLogInfosTable where bore_hole_num=?',
-        [boreHoleNum],
-        (_, result) => {
-          const count = result.rows.item(0).count;
-          resolve(count === 0);
-        },
-        (_, error) => {
-          reject(error);
-        }
-      );
-    });
-  });
-};
-const isTableEmpty2 = () => {
-  return new Promise((resolve, reject) => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        'SELECT COUNT(*) as count FROM DeepWellLogInfos where bore_hole_num=?',
-        [boreHoleNum],
-        (_, result) => {
-          const count = result.rows.item(0).count;
-          resolve(count === 0);
-        },
-        (_, error) => {
-          reject(error);
-        }
-      );
-    });
-  });
-};
-
-isTableEmpty()
-  .then((empty) => {
-   if(!empty)
-   {
-    isTableEmpty2().then((empty)=>
-    {
-      
-      if(!empty)
-      {
-        try {
-          db.transaction(tx=>
-            {
-              
-              tx.executeSql('SELECT * FROM DeepWellLogInfosTable WHERE bore_hole_num = ?',
-              [boreHoleNum],
-              (tx,results)=>
-              {
-                for (let i = 0; i < results.rows.length; i++) {
-                  const row = results.rows.item(i);
-                  TotalData.push({
-                    DateAndTime:row.date_time,
-                    DrillPipeNo:row.drill_pipe,
-                    Minutes:row.time,
-                    Rate:row.rate,
-                    Log:row.formation_log,
-                    Activity:row.activities,
-                    Comments:row.remarks,
-                    Depth:row.depth
-                  });
-                }        
-                      console.log(TotalData)
-              }
-              )
-            })
-          }
-          catch (error) {
-                console.error(error.message);
-              }      
-        db.transaction(tx=>
-          {
-            tx.executeSql('SELECT bore_hole_num from DeepWellLogInfos where bore_hole_num= ?',[boreHoleNum],
-            (_, { rows }) => 
-            {
-              if(rows._array[0].bore_hole_num)
-              {
-               
-                fetch('http://182.18.181.115:8091/api/BoreholeNumber/Get/', {
-           method: 'POST',
-           headers: {
-           Accept: 'application/json',
-           'Content-Type': 'application/json',
-         },
-        body: JSON.stringify({
-          userId: userid,
-          BoreholeNumber: rows._array[0].bore_hole_num,
-        }),
-      })
-        .then((response) => response.json()).
-        then(resData=>JSON.parse(resData))
-        .then((responseData) => {
-          if(responseData.length!==0)
-          { 
-            const bID = responseData[0].boreholeId;
-                try {
-                   db.transaction(tx=>
-              {
-                  tx.executeSql('SELECT * FROM DeepWellLogInfos WHERE bore_hole_num=?',
-                   [boreHoleNum],
-                   (tx,results)=>
-                 { 
-                       for (let i = 0; i < results.rows.length; i++) {
-                    let {id,bore_hole_num,start_date,end_date,driller_unit,table_height,dril_rod_len,dril_bit_len} = results.rows.item(i);            
-                    console.log(bID);
-                    fetch('http://182.18.181.115:8091/api/DeepWellLogForm/Insert', {
-                      method: 'POST ',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        BoreholeNumber:bore_hole_num,
-                        DateStart:start_date,
-                        DateEnd:end_date,
-                        Driller_units:driller_unit,
-                        TableHeight:table_height,
-                        DrillingRodLength:dril_rod_len,
-                        DrillBitLength:dril_bit_len,
-                        DeepwellReportPath: 'Dommy Path',
-                        FormationLogTable:TotalData,
-                        userid:userid,
-                        userName:userName,
-                        boreholeId:bID                                                             
-                      })
-                    })
-                      .then(response => response.json()).
-                      then(responseData=>JSON.parse(responseData))                   
-                      .then(data=> {
-                        console.log(data)
-                        if(data==='Saved')
-                        {
-                          setLoading(false)
-                          setBlueTick(true);
-                          setTimeout(()=>
-                          {
-                            setBlueTick(false)
-                          },2000)
-                        }
-                        else if(data==='Already Data Exist')
-                        {
-                          setLoading(false)
-                          setExcelMark(true);
-                          setTimeout(()=>
-                          {
-                            setExcelMark(false)
-                          },2000)
-                        }
-                    // //   if(data==='Already Data Exist')
-                    // //   {
-                    // //     Alert.alert("WARNING",'Data Already Exist on this Borehole Number');
-                    // //   }
-                    // //   else{
-                        
-                    // //     db.transaction(tx => {
-                    // //       tx.executeSql(
-                    // //         'DROP TABLE IF EXISTS DeepWellLogInfosTable',
-                    // //         [],
-                    // //         (_, result) => {
-                    // //           console.log('DeepWellLogInfosTable Table deleted');
-                    // //         },
-                    // //         (_, error) => {
-                    // //           console.log('Error deleting table:', error);
-                    // //         }
-                    // //       );
-                    
-                    // //   })
-                    // //   db.transaction(tx => {
-                    // //     tx.executeSql(
-                    // //       'DROP TABLE IF EXISTS DeepWellLogInfos',
-                    // //       [],
-                    // //       (_, result) => {
-                    // //         console.log('DeepWellLogInfos Table deleted');
-                    // //         Alert.alert('Data Transfor Successfully....');
-                    // //       },
-                    // //       (_, error) => {
-                    // //         console.log('Error deleting table:', error);
-                    // //       }
-                    // //     );
-                  
-                    // // })
-                    
-                    //   }
-                            
-                      })
-                      .catch(error => {
-                        // Handle the error
-                        console.error('error found',error);
-                      });
-                   
-
-                   }                      
-               }
-            )
-         })
-       }
-  catch (error) {
-        console.error(error.message);
-      }
-           
-          }
-          else
-          {
-            setLoading(false)
-            Alert.alert('WARNING','BoreHoleNumber Does not exists');
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      }
-      else
-      {
-        setLoadingO(false)
-        console.log('SORRY BORE_HOLE_NUMBER NOT EXISTS');
-      }
-            }
-            )
-          })
-        
-      }
-    })
-   }
-   else
-   {
-    setLoading(false)
-    Alert.alert('WARNING','Sorry Data Not Found,Please Fill Data')
-   }
-  })
-  .catch((error) => {
-    console.log('Error:', error);
-  });
-
-}} title='SYNC'/> */}
-
-
-</View>
-
-          {/* <Button onPress={()=>
-          {
-            db.transaction(tx => {
-              tx.executeSql(
-                'DELETE FROM DeepWellLogInfosTable2 WHERE id = ?',
-                [14],
-                (_, result) => {
-                  console.log('Rows affected:', result.rowsAffected);
-                },
-                (_, error) => {
-                  console.log('Error deleting data:', error);
-                }
-              );
-            });
-          }}
-          title='DELETE'
-          /> */}
-          {/* <Text></Text> */}
-{/* 
-          <Button title='DeleTable' onPress={()=>{
-            db.transaction(tx => {
-              tx.executeSql(
-                'DROP TABLE IF EXISTS  BoreHoleNumbers',
-                [],
-                (_, result) => {
-                  console.log('Table deleted ConstantDesTestTable');
-                },
-                (_, error) => {
-                  console.log('Error deleting table:', error);
-                }
-              );
-        
-          })}}/> */}
-
-    {/* </View> */}
 
     
     <Modal visible={dataSave} transparent animationType='fade' >  
@@ -1403,8 +795,7 @@ const styles=StyleSheet.create({
         borderColor:'grey',
         width:125,
         justifyContent:'center',
-        height:55,
-        backgroundColor:'#d8e6d8'
+        height:55
     },
 
     HeadText:{

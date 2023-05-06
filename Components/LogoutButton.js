@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { TouchableOpacity, Text, StyleSheet ,Image, Alert } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const LogoutButton = ({onPress}) => {
   return (
@@ -11,12 +12,9 @@ const LogoutButton = ({onPress}) => {
     [{text:'LOGOUT',onPress:onPress},
     {text:'CANCEL'}
   ])}} 
-    style={styles.button}
     >
         <View style={{height:40,width:100,flexDirection:'row',marginRight:10,justifyContent:'center',alignItems:'center',borderRadius:2}}>
-  
-      <Image source={require('../assets/userLog2.png')} style={styles.img}/>
-
+             <Icon name="user-circle" size={27} color='#1e1e56'/>
       </View>
     </TouchableOpacity>
     </View>

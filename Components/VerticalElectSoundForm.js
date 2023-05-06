@@ -155,7 +155,7 @@ const App=()=>
                 </DataTable.Header>
                 {data.map((item,index)=>
                 {
-
+                 
                     return(
                         <DataTable.Row key={item.vesMasterId}>
                          
@@ -167,8 +167,7 @@ const App=()=>
                              borderColor:'grey',
                              width:125,
                              justifyContent:'center',
-                             height:50,
-                             backgroundColor:'#d8e6d8'
+                             height:50
                         }}>
                      <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                      <Text style={{fontSize:4,opacity:0}}>..............................................................
@@ -194,8 +193,7 @@ const App=()=>
                               borderColor:'grey',
                               width:125,
                               justifyContent:'center',
-                              height:50,
-                              backgroundColor:'#d8e6d8'
+                              height:50
                         }}
                         >
                          <Text style={{color:'black',fontWeight:'bold',fontSize:13}}>{item.column3 || '-'}</Text>  
@@ -275,196 +273,9 @@ const App=()=>
       
             }}
             /> 
-            {/* <Text></Text>
-            <Button title='checkData'
-            onPress={()=>
-            {
-                db.transaction(tx=>{
-                    tx.executeSql(
-                        "SELECT * FROM VesMasterTable where bore_hole_num=?",[getBoreHoleNum],
-                        (tx,results)=>
-                        {
-                            const len=results.rows.length;
-                            for(let i=0;i<len;i++)
-                            {
-                                const { id,bore_hole_num,vestId, Station_No, AB, MN, Resistivity,  App_Res} = results.rows.item(i);
-                                console.log(`id: ${id},bore_hole_num:${bore_hole_num},vestId:${vestId},Station_No:${Station_No},AB:${AB},MN:${MN},Resistivity:${Resistivity}, App_Res: ${App_Res}`);
-                            }
-                        }
-                    )
-                  })
-            }}
-            /> */}
-            {/* <Text></Text>
-             <Button title='CheckUserLogin' onPress={()=> 
-            {
-              db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM User_Master",[],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                            const { id, username, password,userid,token } = results.rows.item(i);
-                            console.log(`User ID: ${id}, UserName: ${username}, Password: ${password}, UserId:${userid} ,token :${token}`);
-                        }
-                    }
-                )
-              })
-            }}/> */}
-            <Text></Text>
-            {/* <Button title='sync'
-            onPress={()=>
-            {  
-              setDataSendLoad(true)
-                const isTableEmpty = () => {
-                return new Promise((resolve, reject) => {
-                  db.transaction((tx) => {
-                    tx.executeSql(
-                      'SELECT COUNT(*) as count FROM VesMasterTable where bore_hole_num=?',
-                      [getBoreHoleNum],
-                      (_, result) => {
-                        const count = result.rows.item(0).count;
-                        resolve(count === 0);
-                      },
-                      (_, error) => {
-                        reject(error);
-                      }
-                    );
-                  });
-                });
-              };
-      
-              isTableEmpty().then((empty)=>
-          {
-            if(!empty)
-            {
-              db.transaction((tx) => {
-                tx.executeSql(
-                  'SELECT vestId,Station_No,AB,MN,Resistivity,App_Res FROM VesMasterTable where bore_hole_num=?',
-                  [getBoreHoleNum],
-                    (_, { rows: { _array } }) => setDataTable(_array),
-                  (tx, error) => {
-                    console.log('Error fetching data from database:', error);
-                  },
-                );
-              }); 
-                   
-                console.log(userid,username)
-                fetch('http://182.18.181.115:8091/api/BoreholeNumber/Get/', {
-                  method: 'POST',
-                  headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-               body: JSON.stringify({
-                 userId: userid,
-                 BoreholeNumber: getBoreHoleNum,
-               }),
-             })
-               .then((response) => response.json()).
-               then(resData=>JSON.parse(resData))
-               .then((responseData) => {
-                 
-                 if(responseData.length!==0)
-                 {  
-                  const boreholeId = responseData[0].boreholeId;
-                  console.log(boreholeId)
-                    fetch('http://182.18.181.115:8091///api/VES/Insert', {
-                      method: 'POST',
-                      headers: {
-                      Accept: 'application/json',
-                      'Content-Type': 'application/json',
-                    },
-                   body: JSON.stringify({
-                    userid:userid,
-                    userName:username,
-                    boreholeId:boreholeId,
-                    BoreholeNumber:getBoreHoleNum,
-                    VES_tabledata: dataTable         
-                            }),
-                 }).then(response=>response.json()).then(responseData=>JSON.parse(responseData)).then(result=> 
-                   {                                 
-                    console.log(result) 
-                    if(result==="Saved")
-                    {                  
-                      setBlueTick(true)
-                      setDataSendLoad(false)
-                      setTimeout(()=>
-                      {
-                        setBlueTick(false)
-                      },2000)
-                     
-                    //   db.transaction(tx => {
-                    //     tx.executeSql(
-                    //       'DROP TABLE IF EXISTS vesMasterTable',
-                    //       [],
-                    //       (_, result) => {
-                    //         console.log('vesMasterTable Table deleted');
-                    //       },
-                    //       (_, error) => {
-                    //         console.log('Error deleting table:', error);
-                    //       }
-                    //     );
-                    // })
-                    }
-                    else
-                    {
-                      setExcelMark(true)
-                      setDataSendLoad(false)
-                      setTimeout(()=>
-                      {
-                        setExcelMark(false)
-                      },1000) 
-                    }
-                   }).
-                   catch(error=>console.log(error))
-                }
-  
-               })
-            }
-            else
-            {            
-                  setDataSendLoad(false)
-                  setDataNotFound(true);
-                  setTimeout(()=>
-                  {
-                    setDataNotFound(false)
-                  },2000)
-            }
-        })   
-            }}
-            /> */}
-
-            {/* <Text></Text>
-            <Button
-            title='DELETE'
-            onPress={()=>
-            {
-                db.transaction(tx => {
-                    tx.executeSql(
-                      'DROP TABLE IF EXISTS vesMasterTable',
-                      [],
-                      (_, result) => {
-                        console.log('vesMasterTable Table deleted');
-                      },
-                      (_, error) => {
-                        console.log('Error deleting table:', error);
-                      }
-                    );
-                })
-            }}
-            /> */}
+           
             </View>
-        {/* <Pressable 
-        onPress={done}
-        style={({pressed})=>({backgroundColor:pressed?'#fff':'#1a06fd'})}
-        >
-        <View style={{height:35,width:80,marginRight:10,justifyContent:'center',alignItems:'center'}}>
-      <Text style={styles.Save}>Save</Text>
-      </View>
-    </Pressable> */}
+       
    
      </View>
      <Modal visible={dataSaving} transparent animationType='fade' >  
@@ -547,8 +358,7 @@ const styles=StyleSheet.create({
         borderColor:'grey',
         width:70,
         justifyContent:'center',
-        height:50,
-        backgroundColor:'#d8e6d8'
+        height:50
     },
     HeadText:{
       color:'#4b3a4b',

@@ -12,6 +12,7 @@ import * as Font from 'expo-font';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { TransitionSpecs } from '@react-navigation/stack';
 
+
 const db=SQLite.openDatabase('Uganda');
 
 const Stack=createStackNavigator();

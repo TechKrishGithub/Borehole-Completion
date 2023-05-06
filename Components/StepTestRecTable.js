@@ -268,7 +268,7 @@ const [fileData,setFileData]=useState();
                          width:100,
                          justifyContent:'center',
                          height:50,
-                         backgroundColor:'#d8e6d8'
+            
                     }}>
                          <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:5,opacity:0}}>..................
@@ -293,7 +293,7 @@ const [fileData,setFileData]=useState();
                           width:100,
                           justifyContent:'center',
                           height:50,
-                          backgroundColor:'#d8e6d8'
+              
                     }}>
                         <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:5,opacity:0}}>..................
@@ -423,67 +423,7 @@ const [fileData,setFileData]=useState();
     </View>
 
         <Text></Text>
-        {/* <Button
-        onPress={()=>
-        {
-            db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM StepTestRecoveryTable where bore_hole_num=?",[boreHoleNum],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                            const { id,TimeMin,waterLeve,drawDown,recovery,remarks,bore_hole_num } = results.rows.item(i);
-                            console.log(`id: ${id}, TimeMin: ${TimeMin}, waterLeve: ${waterLeve}, drawDown:${drawDown} ,recovery :${recovery},remarks:${remarks},bore_hole_num:${bore_hole_num}`);
-                        }
-                    }
-                )
-              })
-        }}
-        title='check'
-        />
-         <Button
-        onPress={()=>
-        {
-            db.transaction(tx=>{
-                tx.executeSql(
-                    "SELECT * FROM StepTestRecovery where bore_hole_num=?",[boreHoleNum],
-                    (tx,results)=>
-                    {
-                        const len=results.rows.length;
-                        for(let i=0;i<len;i++)
-                        {
-                            const { id,bore_hole_num,pumpOn,pumpOff,DuPumtime,staicWaterLev,DynWaterLev,measureP,pumpInstdep,measBy } = results.rows.item(i);
-                            console.log(`id: ${id}, bore_hole_num:${bore_hole_num},pumpOn: ${pumpOn}, pumpOff: ${pumpOff}, DuPumtime:${DuPumtime} ,staicWaterLev :${staicWaterLev},DynWaterLev:${DynWaterLev},measureP:${measureP} ,pumpInstdep :${pumpInstdep},measBy:${measBy}`);
-                        }
-                    }
-                )
-              })
-        }}
-        title='check2'
-        />
-        <Text></Text> */}
-        {/* <Button
-        title='drop'
-        onPress={()=>
-        {
-            db.transaction(tx => {
-                tx.executeSql(
-                  'DROP TABLE IF EXISTS StepTestRecoveryTable',
-                  [],
-                  (_, result) => {
-                    console.log('StepTestRecovery Table deleted');
-                  },
-                  (_, error) => {
-                    console.log('Error deleting table:', error);
-                  }
-                );
-          
-            })
-        }}
-        />
-        <Text></Text> */}
+       
         <View style={{justifyContent:'center',alignItems:'center'}}>
             <Button title='save' onPress={()=>
             {
@@ -614,192 +554,7 @@ const [fileData,setFileData]=useState();
                 }      
             }}/> 
             <Text></Text>
-            {/* <Button
-            onPress={()=>
-            {
-              setLoading(true)
-                const isTableEmpty = () => {
-                    return new Promise((resolve, reject) => {
-                      db.transaction((tx) => {
-                        tx.executeSql(
-                          'SELECT COUNT(*) as count FROM StepTestRecovery where bore_hole_num=?',
-                          [boreHoleNum],
-                          (_, result) => {
-                            const count = result.rows.item(0).count;
-                            resolve(count === 0);
-                          },
-                          (_, error) => {
-                            reject(error);
-                          }
-                        );
-                      });
-                    });
-                  };
-                  const isTableEmpty2 = () => {
-                    return new Promise((resolve, reject) => {
-                      db.transaction((tx) => {
-                        tx.executeSql(
-                          'SELECT COUNT(*) as count FROM StepTestRecoveryTable where bore_hole_num=?',
-                          [boreHoleNum],
-                          (_, result) => {
-                            const count = result.rows.item(0).count;
-                            resolve(count === 0);
-                          },
-                          (_, error) => {
-                            reject(error);
-                          }
-                        );
-                      });
-                    });
-                  };
-                
-            isTableEmpty()
-            .then((empty) => {
-                if(!empty)
-                {
-                isTableEmpty2().then((empty)=>
-                 {
-                if(!empty)
-                    {
-                     
-                            console.log(userid,userName)
-                            try {
-                              db.transaction(tx=>
-                                {
-                                  
-                                  tx.executeSql('SELECT * FROM StepTestRecoveryTable where bore_hole_num=?',
-                                  [boreHoleNum],
-                                  (tx,results)=>
-                                  {
-                                    for (let i = 0; i < results.rows.length; i++) {
-                                      const row = results.rows.item(i);
-                                      stepTestTableData.push({
-                                          Time:row.TimeMin,
-                                          Water_Level:row.waterLeve,
-                                          Resedual_Drawdown:row.drawDown,
-                                          RecoveryPercentage:row.recovery,
-                                          Remarks:row.remarks,
-                                      
-                                      });
-                                    }        
-                                         console.log(stepTestTableData) 
-                                  }
-                                  )
-                                })
-                              }
-                              catch (error) {
-                                    console.error(error.message);
-                                  }     
-                            fetch('http://182.18.181.115:8091/api/BoreholeNumber/Get/', {
-                              method: 'POST',
-                              headers: {
-                              Accept: 'application/json',
-                              'Content-Type': 'application/json',
-                            },
-                           body: JSON.stringify({
-                             userId: userid,
-                             BoreholeNumber: boreHoleNum,
-                           }),
-                         })
-                           .then((response) => response.json()).
-                           then(resData=>JSON.parse(resData))
-                           .then((responseData) => {
-                             
-                             if(responseData.length!==0)
-                             {                            
-                              const bID=responseData[0].boreholeId;
-                              console.log(bID);
-                              db.transaction(tx=>
-                                {
-                                    tx.executeSql('SELECT * FROM StepTestRecovery WHERE bore_hole_num=?',
-                                     [boreHoleNum],
-                                     (tx,results)=>
-                                   { 
-                                         for (let i = 0; i < results.rows.length; i++) {
-                                      let {id,bore_hole_num,pumpOn,pumpOff,DuPumtime,staicWaterLev,DynWaterLev,measureP,pumpInstdep,measBy} = results.rows.item(i);
-                                      fetch('http://182.18.181.115:8091//api/StepRecovery/Insert',
-                                      {
-                                      method: 'POST',
-                                      headers: {
-                                      Accept: 'application/json',
-                                      'Content-Type': 'application/json',
-                                    },
-        
-                                   body: JSON.stringify({
-                                      RecoveryPumpOn: pumpOn,
-                                      RecoveryPumpOff: pumpOff,
-                                      RecoveryDuration: DuPumtime,
-                                      RecoverySWL: staicWaterLev,
-                                      RecoveryDWL: DynWaterLev,
-                                      RecoveryMeasuringPoint:measureP ,
-                                      RecoveryPumpInstallationDepth: pumpInstdep,
-                                      RecoveryMeasuredBy: measBy,
-                                      RecoveryTable: stepTestTableData,
-                                      userid:userid,
-                                      userName:userName,
-                                      boreholeId:bID,
-                                      RecoverySiteFilePath:'DemoFor'
-                                   }),
-                                 }).then(response=>response.json()).then(responseData=>JSON.parse(responseData)).
-                                 then(result=>
-                                  {
-                                    if(result==="Saved")
-                                    {
-                                      setLoading(false);
-                                     setBlueTick(true) ;
-                                     setTimeout(()=>
-                                     {
-                                      setBlueTick(false)
-                                     },2000)
-                                    }
-                                    else
-                                    {
-                                      setLoading(false)
-                                      setExcelMark(true)
-                                      setTimeout(()=>
-                                      {
-                                        setExcelMark(false)
-                                      },2000)
-                                    }
-                                  }
-
-                                 ).catch(error=>console.log(error))
-                                         }
-                                        }
-                                    )
-                                      })
-                             
-                             }
-                            })
-                     
-                               
-                    }
-                    else
-                    {
-                      setLoading(false)
-                      Alert.alert('WARNING','StepTestRecoveryTable Does not contains DATA please fill')
-                    }
-                 })
-                }
-                else
-                {
-                  setLoading(false)
-                  Alert.alert('WARNING','StepTestRecovery Does not contains please fill')
-                }
-            })
-                  
-
-            }}
-            title='SYNC'
-            /> */}
-        {/* <Pressable 
-        onPress={done}
-        style={({pressed})=>({backgroundColor:pressed?'#fff':'#1a06fd'})}
-        >
-        <View style={{height:35,width:80,marginRight:10,justifyContent:'center',alignItems:'center'}}>
-      <Text style={styles.Save}>Save</Text>
-      </View>
-    </Pressable> */}
+           
     </View>
     <Modal visible={dataSaving} transparent animationType='fade' >  
         <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'rgba(0,0,0,0.5)'}}>        
@@ -880,8 +635,7 @@ const styles=StyleSheet.create({
         borderColor:'grey',
         width:80,
         justifyContent:'center',
-        height:50,
-        backgroundColor:'#d8e6d8'
+        height:50
     },
     HeadText:{
       color:'#4b3a4b',

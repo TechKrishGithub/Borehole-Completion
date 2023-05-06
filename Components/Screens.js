@@ -3,6 +3,9 @@ import {View,Text,Pressable,StyleSheet,useColorScheme,ImageBackground,Image,Butt
 import * as Font from 'expo-font';
 import * as SQLite from 'expo-sqlite';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const db=SQLite.openDatabase('Uganda');
@@ -62,55 +65,64 @@ const Screens=({navigation})=>
         navigation.navigate('Vertical Electric Sounding Form',{getBoreHoleNum});
     }
   
+   
     return(
         
         <View style={{flex:1,alignItems:'center',backgroundColor:'#effafc'}}>
-
+          
 <View style={{flex:1,marginTop:50}}>
             <View style={styles.screens}>
-
-           
             <View style={styles.screensButtons}>
-               <Pressable
+            <LinearGradient 
+            colors={['#3c8da8', '#85cae2', '#3c8da8']}
+            start={[0, 0]}
+            end={[1, 0]}
+            locations={[0.15, 0.5, 0.95]}
+            style={{ flex: 1,borderRadius:20,elevation:10 }}
+          >
+            <TouchableOpacity
                
-            onPress={changeToLogForDeepWell}
-            style={({pressed})=>({backgroundColor:pressed?'#837083':'#f5f9fa',
-            borderRadius:20,
-            elevation: 10, // set elevation to give shadow effect
-            shadowColor: shadowColor, // set shadow color
-            shadowRadius: 20, // set shadow thickness or blur
-            shadowOpacity: 1, // set shadow opacity
-            shadowOffset: {
-              width: 10, // set x-axis shadow length
-              height: 10, // set y-axis shadow length
-            },
-        })}
-            >
-            <View style={styles.button}>
-            <Text style={styles.text}>Log For Deep Well</Text>
-            </View>
-            </Pressable>
+               onPress={changeToLogForDeepWell}
+               style={{
+               borderRadius:20,
+               borderWidth:0.8,
+               borderColor:'#cfdcdd'
+               }}
+               >
+               <View style={styles.button}>
+             <Image source={require('../assets/fileEntry4.png')} style={{height:50,width:50}}/>
+               <Text style={styles.text}>Log For Deep Well</Text>
+               </View>
+               </TouchableOpacity>
+            
+          </LinearGradient>
+             
             </View>
 
             <View style={styles.screensButtons}>
-            <Pressable
+
+            <LinearGradient
+            colors={['#3c8da8', '#85cae2', '#3c8da8']}
+            start={[0, 0]}
+            end={[1, 0]}
+            locations={[0.15, 0.5, 0.95]}
+            style={{ flex: 1,borderRadius:20,elevation:10 }}
+          >
+             <TouchableOpacity
             onPress={changeToStepTest}
-            style={({pressed})=>({backgroundColor:pressed?'#837083':'#f5f9fa',
+            style={{
             borderRadius:20,
-            elevation: 10, // set elevation to give shadow effect
-            shadowColor: shadowColor, // set shadow color
-            shadowRadius: 10, // set shadow thickness or blur
-            shadowOpacity: 0.5, // set shadow opacity
-            shadowOffset: {
-              width: 10, // set x-axis shadow length
-              height: 10, // set y-axis shadow length
-            },
-        })}
+            borderWidth:0.8,
+            borderColor:'#cfdcdd'
+        }}
             >
                 <View style={styles.button}>
+                  <Image source={require('../assets/fileEntry4.png')} style={{height:50,width:50}}/>
                 <Text style={styles.text}>StepTest</Text>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
+
+          </LinearGradient>
             </View>
             </View>
 
@@ -119,47 +131,57 @@ const Screens=({navigation})=>
          <View style={styles.screens}>
 
             <View style={styles.screensButtons}>
-            <Pressable
+            <LinearGradient
+             colors={['#3c8da8', '#85cae2', '#3c8da8']}
+            start={[0, 0]}
+            end={[1, 0]}
+            locations={[0.15, 0.5, 0.95]}
+            style={{ flex: 1,borderRadius:20,elevation:10 }}
+          >
+              <TouchableOpacity
             onPress={changeToStepTestRecovery}
-            style={({pressed})=>({backgroundColor:pressed?'#837083':'#f5f9fa',
+            style={{
             borderRadius:20,
-            elevation: 10, // set elevation to give shadow effect
-            shadowColor: shadowColor, // set shadow color
-            shadowRadius: 10, // set shadow thickness or blur
-            shadowOpacity: 0.5, // set shadow opacity
-            shadowOffset: {
-              width: 10, // set x-axis shadow length
-              height: 10, // set y-axis shadow length
-            },
-          
-        })}
+            borderWidth:0.8,
+            borderColor:'#cfdcdd'
+            }}
             >
                 <View style={styles.button}>
+                  <Image source={require('../assets/fileEntry4.png')} style={{height:50,width:50}}/>
                 <Text style={styles.text}>Step Test Recovery</Text>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
+
+          </LinearGradient>
+          
             </View>
 
             <View style={styles.screensButtons}>
-            <Pressable
+
+            <LinearGradient
+             colors={['#3c8da8', '#85cae2', '#3c8da8']}
+            start={[0, 0]}
+            end={[1, 0]}
+            locations={[0.15, 0.5, 0.95]}
+            style={{ flex: 1,borderRadius:20,elevation:10 }}
+          >
+
+            <TouchableOpacity
             onPress={changeToConstantDischargeTest}
-            style={({pressed})=>({backgroundColor:pressed?'#837083':'#f5f9fa',
+            style={{
             borderRadius:20,
-            elevation: 10, // set elevation to give shadow effect
-            shadowColor: shadowColor, // set shadow color
-            shadowRadius: 10, // set shadow thickness or blur
-            shadowOpacity: 0.5, // set shadow opacity
-            shadowOffset: {
-              width: 10, // set x-axis shadow length
-              height: 10, // set y-axis shadow length
-            },
-            padding:25
-        })}
+            borderWidth:0.8,
+            borderColor:'#cfdcdd'
+        }}
             >
                  <View style={styles.button}>
+                   <Image source={require('../assets/fileEntry4.png')} style={{height:50,width:50}}/>
                 <Text style={styles.text}>Constant Discharge Test</Text>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
+
+            </LinearGradient>
+           
             </View>
        </View>
 
@@ -167,47 +189,52 @@ const Screens=({navigation})=>
 
             <View style={styles.screens}>
               <View style={styles.screensButtons}>
-            <Pressable
+              <LinearGradient
+             colors={['#3c8da8', '#85cae2', '#3c8da8']}
+            start={[0, 0]}
+            end={[1, 0]}
+            locations={[0.15, 0.5, 0.95]}
+            style={{ flex: 1,borderRadius:20,elevation:10 }}
+          >
+            <TouchableOpacity
             onPress={changeToConstantTestRecovery}
-            style={({pressed})=>
-            ({backgroundColor:pressed?'#837083': '#f5f9fa',
+            style={{
             borderRadius:20,
-            elevation: 10, // set elevation to give shadow effect
-            shadowColor: shadowColor, // set shadow color
-            shadowRadius: 10, // set shadow thickness or blur
-            shadowOpacity: 0.5, // set shadow opacity
-            shadowOffset: {
-              width: 10, // set x-axis shadow length
-              height: 10, // set y-axis shadow length
-            },
-            padding:25
-        })
-    }
+            borderWidth:0.8,
+            borderColor:'#cfdcdd'
+            }}
             >
                  <View style={styles.button}>
+                   <Image source={require('../assets/fileEntry4.png')} style={{height:50,width:50}}/>
                 <Text style={styles.text}>Constant Test Recovery</Text>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
+            </LinearGradient>
+           
             </View>
             <View style={styles.screensButtons}>
-            <Pressable
+            <LinearGradient
+             colors={['#3c8da8', '#85cae2', '#3c8da8']}
+            start={[0, 0]}
+            end={[1, 0]}
+            locations={[0.15, 0.5, 0.95]}
+            style={{ flex: 1,borderRadius:20,elevation:10 }}
+          >
+            <TouchableOpacity
             onPress={changeToVertEleSounForm}
-            style={({pressed})=>({backgroundColor:pressed?'rgb(131, 112, 131)':'#f5f9fa',
+            style={{
             borderRadius:20,
-            elevation: 10, // set elevation to give shadow effect
-            shadowColor: shadowColor, // set shadow color
-            shadowRadius: 10, // set shadow thickness or blur
-            shadowOpacity: 0.5, // set shadow opacity
-            shadowOffset: {
-              width: 10, // set x-axis shadow length
-              height: 10, // set y-axis shadow length
-            },
-        })}
+            borderWidth:0.8,
+            borderColor:'#cfdcdd'
+            }}
             >
                  <View style={styles.button}>
+                   <Image source={require('../assets/fileEntry4.png')} style={{height:50,width:50}}/>
                 <Text style={styles.text}>Vertical Electric Sounding Form</Text>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
+            </LinearGradient>
+           
             </View>
             </View>
 
@@ -221,22 +248,23 @@ const Screens=({navigation})=>
       alignItems:'center',
       padding:8    
 }}>
-            <Pressable
+     <LinearGradient
+             colors={['#3c8da8', '#85cae2', '#3c8da8']}
+            start={[0, 0]}
+            end={[1, 0]}
+            locations={[0.15, 0.5, 0.95]}
+            style={{ flex: 1,elevation:10, borderRadius:10 }}
+          >
+ <TouchableOpacity
             onPress={()=>
             {
                 navigation.navigate('Dashboard')
             }}
-            style={({pressed})=>({backgroundColor:pressed?'rgb(131, 112, 131)':'#f5f9fa',
+            style={{
             borderRadius:10,
-            elevation: 10, // set elevation to give shadow effect
-            shadowColor: shadowColor, // set shadow color
-            shadowRadius: 10, // set shadow thickness or blur
-            shadowOpacity: 0.5, // set shadow opacity
-            shadowOffset: {
-              width: 10, // set x-axis shadow length
-              height: 10, // set y-axis shadow length
-            },
-        })}
+            borderWidth:0.8,
+            borderColor:'#cfdcdd'
+            }}
             >
                  <View style={{
                      height:'100%',
@@ -246,11 +274,13 @@ const Screens=({navigation})=>
                  }}>
                 <Text style={{
                        fontSize:15,
-                       color:'#1e3b3b',
+                       color:'white',
                        fontFamily: 'SpaceMono-Bold'
                 }}>Back To Dashboard</Text>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
+          </LinearGradient>
+           
 </View>
             </View>         
         </View>
@@ -263,11 +293,11 @@ const styles=StyleSheet.create({
         width:'100%',
         alignItems:'center',
         justifyContent:'center',
-   
+       
     },
     text:{
     fontSize:15,
-    color:'#1e3b3b',
+    color:'white',
     fontFamily: 'Kanit-ExtraBold'
     },
     screens:{
@@ -276,13 +306,14 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'row',
-        padding:8,
+        padding:5,
         marginTop:20,  
         marginLeft:-20,      
     },
     screensButtons:{
         width:'45%',
         marginLeft:20,
+        
        
     }
 })

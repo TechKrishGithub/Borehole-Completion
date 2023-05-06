@@ -350,7 +350,7 @@ const [fileData,setFileData]=useState();
                           width:120,
                           justifyContent:'center',
                           height:50,
-                          backgroundColor:'#c4c4c4'
+              
                     }}>
                     <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:5,opacity:0}}>..................
@@ -380,7 +380,7 @@ const [fileData,setFileData]=useState();
                           width:120,
                           justifyContent:'center',
                           height:50,
-                          backgroundColor:'#c4c4c4'
+              
                     }}>
                          <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:5,opacity:0}}>..................
@@ -398,7 +398,7 @@ const [fileData,setFileData]=useState();
                           width:120,
                           justifyContent:'center',
                           height:50,
-                          backgroundColor:'#c4c4c4'
+              
                     }}>
                          <View style={{borderWidth:0.7,borderColor:'grey',borderRadius:10}}>
                             <Text style={{fontSize:5,opacity:0}}>..................
@@ -526,189 +526,12 @@ const [fileData,setFileData]=useState();
                 </View>
     </View>
 
-        {/* <Button title='check'
-            onPress={()=>
-            {
-                db.transaction(tx=>{
-                    tx.executeSql(
-                        "SELECT * FROM ConstantDesTest where bore_hole_num=?",[getBoreHoleNum],
-                        (tx,results)=>
-                        {
-                            const len=results.rows.length;
-                            for(let i=0;i<len;i++)
-                            {
-                                const { id,bore_hole_num,pump_on,pump_off,dur_pum_test,static_wat,dyn_wat,measu_point,pump_inst_depth,meas_by } = results.rows.item(i);
-                                console.log(`id: ${id}, bore_hole_num:${bore_hole_num},pumpOn: ${pump_on}, pumpOff: ${pump_off}, DuPumtime:${dur_pum_test} ,staicWaterLev :${static_wat},DynWaterLev:${dyn_wat},measureP:${measu_point} ,pumpInstdep :${pump_inst_depth},measBy:${meas_by}`);
-                            }
-                        }
-                    )
-                  })
-
-            }}
-            /> */}
+       
         <Text></Text>
         <View style={{justifyContent:'center',alignItems:'center'}}>
             <Button title='save' onPress={Save}
             /> 
             <Text></Text>
-
-            {/* <Button
-            onPress={()=>
-            {
-                fetch('http://182.18.181.115:8091/api/BoreholeNumber/Get/', {
-                    method: 'POST',
-                    headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                 body: JSON.stringify({
-                   userId: 414,
-                   BoreholeNumber: 'DWD111',
-                 }),
-               })
-                 .then((response) => response.json()).
-                 then(resData=>JSON.parse(resData))
-                 .then((responseData) => {
-                   
-                   if(responseData.length!==0)
-                   {  
-                  
-                db.transaction(tx=>
-                    {
-                      
-                      tx.executeSql('SELECT * FROM ConstantDesTestTable where bore_hole_num=?',
-                      [getBoreHoleNum],
-                      (tx,results)=>
-                      {
-                        for (let i = 0; i < results.rows.length; i++) {
-                          const row = results.rows.item(i);
-                          ConstDisTableData.push({
-                            Time:row.time,
-                            Water_Level:row.Water_level,
-                            Draw_Down:row.draw_down,
-                            Discharge:row.discharge,
-                            Ec:row.Ec,
-                            remarks:row.remarks,
-                          
-                          });
-                        }        
-                             console.log(ConstDisTableData) 
-                      }
-                      )
-                    })
-
-                db.transaction(tx=>
-                    {
-                        tx.executeSql('SELECT * FROM ConstantDesTest WHERE bore_hole_num=?',
-                        [getBoreHoleNum],
-                        (tx,results)=>
-                        {
-                            for (let i = 0; i < results.rows.length; i++) {
-                                let {id,bore_hole_num,pump_on,pump_off,dur_pum_test,static_wat,dyn_wat,measu_point,pump_inst_depth,meas_by} = results.rows.item(i);
-                          fetch('http://182.18.181.115:8091/api/ConstantTest/Insert',
-                          {
-                          method: 'POST',
-                          headers: {
-                          Accept: 'application/json',
-                          'Content-Type': 'application/json',
-                        },
-
-                       body: JSON.stringify({
-                        boreholeId: responseData[0].boreholeId,
-                        BoreholeNumber: getBoreHoleNum,
-                        ConstantPumpOn: pump_on,
-                        ConstantPumpOff: pump_off,
-                        ConstantSiteFile: 'Dummy Path',
-                        ConstantTable: ConstDisTableData,
-                        ConstantDuration: dur_pum_test,
-                        ConstantSWL: static_wat,
-                        ConstantDWL: dyn_wat,
-                        ConstantMeasuringPoint: measu_point,
-                        ConstantPumpInstallationDepth: pump_inst_depth,
-                        ConstantMeasuredBy: meas_by,
-                        userid: 414,
-                        userName:'charles@gmail.com'
-                       }),
-                     }).then(response=>response.json()).then(responseData=>JSON.parse(responseData)).
-                     then(result=>
-                      {
-                        console.log(result)
-                        if(result==="Saved")
-                        {
-                            Alert.alert(result)
-                        }
-                        else
-                        {
-                        Alert.alert(result)
-                        }
-                      }
-
-                     ).catch(error=>console.log(error))
-                            }
-                        }
-                        )
-                    })
-
-                }
-            })
-                // db.transaction(tx=>
-                //     {
-                //         tx.executeSql('SELECT * FROM ConstantDesTest WHERE bore_hole_num=?',
-                //          [boreHoleNum],
-                //          (tx,results)=>
-                //        { 
-                //              for (let i = 0; i < results.rows.length; i++) {
-                //           let {id,bore_hole_num,pumpOn,pumpOff,DuPumtime,staicWaterLev,DynWaterLev,measureP,pumpInstdep,measBy} = results.rows.item(i);
-                //           fetch('http://182.18.181.115:8091//api/StepRecovery/Insert',
-                //           {
-                //           method: 'POST',
-                //           headers: {
-                //           Accept: 'application/json',
-                //           'Content-Type': 'application/json',
-                //         },
-
-                //        body: JSON.stringify({
-                //           RecoveryPumpOn: pumpOn,
-                //           RecoveryPumpOff: pumpOff,
-                //           RecoveryDuration: DuPumtime,
-                //           RecoverySWL: staicWaterLev,
-                //           RecoveryDWL: DynWaterLev,
-                //           RecoveryMeasuringPoint:measureP ,
-                //           RecoveryPumpInstallationDepth: pumpInstdep,
-                //           RecoveryMeasuredBy: measBy,
-                //           RecoveryTable: stepTestTableData,
-                //           userid:userid,
-                //           userName:userName,
-                //           boreholeId:bID,
-                //           RecoverySiteFilePath:'DemoFor'
-                //        }),
-                //      }).then(response=>response.json()).then(responseData=>JSON.parse(responseData)).
-                //      then(result=>
-                //       {
-                //         if(result==="Saved")
-                //         {
-                //           setLoading(false);
-                //          setBlueTick(true) ;
-                //          setTimeout(()=>
-                //          {
-                //           setBlueTick(false)
-                //          },2000)
-                //         }
-                //         else
-                //         {
-                //           setLoading(false)
-                //           setExcelMark(true)
-                //           setTimeout(()=>
-                //           {
-                //             setExcelMark(false)
-                //           },2000)
-                //         }
-                //       }
-
-                //      ).catch(error=>console.log(error))
-            }}
-            title='sync'
-            /> */}
              <Modal visible={dataSaving} transparent animationType='fade' >  
         <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'rgba(0,0,0,0.5)'}}>        
             <ActivityIndicator size="large" color="#fff" style={{fontSize:60}}/>
@@ -734,15 +557,6 @@ const [fileData,setFileData]=useState();
             >Data Saved Succesfully</Text>
             </View>
                   </Modal>
-
-        {/* <Pressable 
-        onPress={done}
-        style={({pressed})=>({backgroundColor:pressed?'#fff':'#1a06fd'})}
-        >
-        <View style={{height:35,width:80,marginRight:10,justifyContent:'center',alignItems:'center'}}>
-      <Text style={styles.Save}>Save</Text>
-      </View>
-    </Pressable> */}
     </View>
    
         </ScrollView>
@@ -762,8 +576,7 @@ const styles=StyleSheet.create({
         borderColor:'black',
         width:100,
         justifyContent:'center',
-        height:50,
-        backgroundColor:'#c4c4c4'
+        height:50
     },
     HeadText:{
         color:'#060707',

@@ -91,24 +91,7 @@ const ConstantDischargeTest=()=>
 
     return(
        <ScrollView >
-        {/* <Button title='delete'
-onPress={()=>
-{
-  db.transaction(tx => {
-    tx.executeSql(
-      'DROP TABLE IF EXISTS  ConstantDesTest',
-      [],
-      (_, result) => {
-        console.log('Table deleted ConstantDesTest');
-      },
-      (_, error) => {
-        console.log('Error deleting table:', error);
-      }
-    );
-
-})
-}}
-/> */}
+      
         <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           
             <View style={{height:40,width:'100%',alignItems:'center',backgroundColor:'#D8EDF4',justifyContent:'center'}}>

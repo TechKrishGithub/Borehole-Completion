@@ -49,6 +49,8 @@ const styles=StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 5,
     elevation: 2,
+    borderRadius:20,
+    alignItems:'center'
   },
   itemText: {
     fontSize: 13,

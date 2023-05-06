@@ -245,81 +245,10 @@ const LogForDeepWell=()=>
         </View>
         <FData getBoreHoleNum={getBoreHoleNum} lenDrillBit={lenDrillBit} lenDrillRod={lenDrillRod} tableHeight={tableHeight}  startDate={startDate} endDate={endDate} drillUnit={drillUnit}/>
         <Text></Text>
-        {/* <View style={{flexDirection:'row',marginLeft:15}}>
-          <Text style={{fontWeight:'bold'}}>Attach Log for Deepwell Report </Text>
-          <Text style={{color:'red'}}>*</Text>
-          </View>
-          <Text style={{fontSize:5}}></Text>
-        <View style={styles.file}>
-            <TouchableOpacity
-            onPress={pickImage}
-            >
-                <View style={styles.choose}>
-                <Text style={{fontSize:12,fontWeight:'100'}}>ChooseFile</Text>
-                </View>
-                </TouchableOpacity>
-                <View style={styles.chooseHolder}>
-                <TextInput placeholder='no file choosen' style={{marginLeft:10}} value={state} readOnly/>
-                {image && <Image source={{ uri: image.uri }} style={{ width: 200, height: 200 ,marginLeft:300}} />}
-                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-                </View>
-    </View> */}
+     
     <Text></Text>
     <View style={{justifyContent:'center',alignItems:'center'}}>
-        {/* <Button title='Tables'
-    onPress={()=>
-    {
-      db.transaction((tx) => {
-        tx.executeSql(
-          "SELECT name FROM sqlite_master WHERE type='table'",
-          [],
-          (txObj, { rows: { _array } }) => {
-            console.log(`Tables: ${_array.length}`);
-            console.log(_array);
-          },
-          (txObj, error) => console.log('Error', error)
-        );
-      });
-    }}
-    
-    /> */}
-    {/* <Text></Text> */}
-    {/* <Button title='colName'
-    onPress={()=>{
-      db.transaction((tx) => {
-        const tableName = "DeepWellLogInfos";
-        tx.executeSql(
-          `PRAGMA table_info(${tableName})`,
-          [],
-          (txObj, { rows: { _array } }) => {
-            const columnNames = _array.map((column) => column.name);
-            console.log(`Table '${tableName}' has ${columnNames.length} columns:`, columnNames);
-          },
-          (txObj, error) => console.log('Error', error)
-        );
-      });
-    }}
-    /> */}
-    {/* <Text></Text>
-    <Button title='Data DeepWellLogInfos'
-    onPress={()=>{
-      db.transaction(tx=>{
-        tx.executeSql(
-          "SELECT * FROM DeepWellLogInfos",[],
-          (tx,results)=>
-          {
-              const len=results.rows.length;
-              for(let i=0;i<len;i++)
-              {
-                  const {id,bore_hole_num,start_date,end_date,driller_unit,table_height,dril_rod_len,dril_bit_len} = results.rows.item(i);
-                  console.log(`id:${id},bore_hole_num:${bore_hole_num},start_date:${start_date},end_date:${end_date},driller_unit:${driller_unit},table_height:${table_height},dril_rod_len:${dril_rod_len},dril_bit_len:${dril_bit_len}`);
-              }
-          }
-        )
-      })
-    }}
-    />
-    <Text></Text> */}
+      
 
 <Text></Text>
 

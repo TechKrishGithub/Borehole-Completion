@@ -121,16 +121,6 @@ const isTableEmpty = () => {
     });
 },[]);
 
-// const getUserFromApi=()=>
-// {
-//   fetch('http://182.18.181.115:8084/api/login/loginservice?username='+username+'&password='+password+'').
-//   then(response=>response.json()).
-//   then(responseText=>JSON.parse(responseText)).
-//   then((data)=>{
-//     console.log(data);
-//   }).catch(error=>console.log(error))
-// }
-
     
     const getData=async ()=>
     {
